@@ -1,0 +1,118 @@
+{
+    "name": "windsurf-account-switcher",
+    "displayName": "Windsurf 无感换号",
+    "description": "在 Windsurf IDE 中实现账号无感切换",
+    "version": "1.0.0",
+    "publisher": "crispvibe",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/crispvibe/WindsurfSwitch.git"
+    },
+    "engines": {
+        "vscode": "^1.80.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onStartupFinished"
+    ],
+    "icon": "icon.png",
+    "main": "./out/extension.js",
+    "contributes": {
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "windsurfSwitch",
+                    "title": "Windsurf 换号",
+                    "icon": "resources/icon.svg"
+                }
+            ]
+        },
+        "views": {
+            "windsurfSwitch": [
+                {
+                    "type": "webview",
+                    "id": "windsurfSwitch.accountPanel",
+                    "name": "账号管理"
+                }
+            ]
+        },
+        "commands": [
+            {
+                "command": "windsurfSwitch.switchAccount",
+                "title": "切换账号",
+                "category": "WindsurfSwitch",
+                "icon": "$(arrow-swap)"
+            },
+            {
+                "command": "windsurfSwitch.addAccount",
+                "title": "添加账号",
+                "category": "WindsurfSwitch",
+                "icon": "$(add)"
+            },
+            {
+                "command": "windsurfSwitch.listAccounts",
+                "title": "管理账号",
+                "category": "WindsurfSwitch"
+            },
+            {
+                "command": "windsurfSwitch.showCurrentAccount",
+                "title": "查看当前账号",
+                "category": "WindsurfSwitch"
+            },
+            {
+                "command": "windsurfSwitch.removeAccount",
+                "title": "删除账号",
+                "category": "WindsurfSwitch"
+            },
+            {
+                "command": "windsurfSwitch.refreshPanel",
+                "title": "刷新面板",
+                "category": "WindsurfSwitch",
+                "icon": "$(refresh)"
+            },
+            {
+                "command": "windsurfSwitch.switchNextAccount",
+                "title": "切换下一个账号",
+                "category": "WindsurfSwitch",
+                "icon": "$(arrow-right)"
+            }
+        ],
+        "keybindings": [
+            {
+                "command": "windsurfSwitch.switchNextAccount",
+                "key": "ctrl+alt+k",
+                "mac": "cmd+alt+k",
+                "when": "true"
+            }
+        ],
+        "configuration": {
+            "title": "Windsurf 无感换号",
+            "properties": {
+                "windsurfSwitch.refreshOnSwitch": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "切换账号后是否刷新窗口"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile",
+        "package": "vsce package"
+    },
+    "devDependencies": {
+        "@types/node": "^18.0.0",
+        "@types/uuid": "^9.0.0",
+        "@types/vscode": "^1.80.0",
+        "typescript": "^5.0.0"
+    },
+    "dependencies": {
+        "sql.js": "^1.10.3",
+        "uuid": "^9.0.1"
+    }
+}
